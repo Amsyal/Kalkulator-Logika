@@ -1,40 +1,52 @@
-const calculateBtn = document.getElementById("calculateBtn");
+calculateBtn = document.getElementById("calculateBtn");
 
 calculateBtn.addEventListener("click", () => {
-  let userInput = document.getElementById("userInput").value.toLowerCase();
-  console.log(userInput);
-  let kata = userInput.split(" ");
+  let input1 = document.getElementById("input1").value.toLowerCase();
+  let input2 = document.getElementById("input2").value.toLowerCase();
+  let operator = document.getElementById("operator").value.toLowerCase();
+
+  expresi = [input1, operator, input2];
+
+  let inputAllowed = ["1", "0"];
+  let operatorAllowed = ["not", "and", "or", "xor", "nand", "nor"];
 
   let result;
-  let kalimatBaru;
+  let newExpresi;
 
-  for (let i = 0; i < kata.length; i++) {
-    if (kata[i] == "and") {
-      kata[i] = "&&";
-      kalimatBaru = kata.join(" ");
-      result = eval(kalimatBaru);
-    } else if (kata[i] == "or") {
-      kata[i] = "||";
-      kalimatBaru = kata.join(" ");
-      result = eval(kalimatBaru);
-    } else if (kata[i] == "not") {
-      kata[i] = "!";
-      kalimatBaru = kata.join(" ");
-      result = eval(kalimatBaru);
-    } else if (kata[i] == "nand") {
-      kata[i] = "&&";
-      kalimatBaru = kata.join(" ");
-      result = !eval(kalimatBaru);
-    } else if (kata[i] == "nor") {
-      kata[i] = "||";
-      kalimatBaru = kata.join(" ");
-      result = !eval(kalimatBaru);
-    } else if (kata[i] == "xor") {
-      kata[i] = "!==";
-      kalimatBaru = kata.join(" ");
-      result = eval(kalimatBaru);
+  if (!inputAllowed.includes(input1) || !inputAllowed.includes(input2) || !operatorAllowed.includes(operator)) {
+    alert(`input yang dibolehkan hanya ${inputAllowed[0]} dan ${inputAllowed[1]} \noperator yang dibolehkan hanya ${operatorAllowed}`);
+    result = "ERROR";
+  } else {
+    for (let i = 0; i < expresi.length; i++) {
+      if (expresi[i] == "and") {
+        expresi[i] = "&&";
+        newExpresi = expresi.join(" ");
+        result = eval(newExpresi);
+      } else if (expresi[i] == "or") {
+        expresi[i] = "||";
+        newExpresi = expresi.join(" ");
+        result = eval(newExpresi);
+      } else if (expresi[i] == "not") {
+        expresi[i] = "!";
+        newExpresi = expresi.join(" ");
+        result = eval(newExpresi);
+      } else if (expresi[i] == "nand") {
+        expresi[i] = "&&";
+        newExpresi = expresi.join(" ");
+        result = !eval(newExpresi);
+      } else if (expresi[i] == "nor") {
+        expresi[i] = "||";
+        newExpresi = expresi.join(" ");
+        result = !eval(newExpresi);
+      } else if (expresi[i] == "xor") {
+        expresi[i] = "!==";
+        newExpresi = expresi.join(" ");
+        result = eval(newExpresi);
+      }
     }
   }
 
-  document.getElementById("result").textContent = result;
+  result = result == "true" || result == "1" ? "1" : "0";
+
+  document.getElementById("result").value = result;
 });
