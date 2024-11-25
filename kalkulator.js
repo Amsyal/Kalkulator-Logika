@@ -13,10 +13,7 @@ calculateBtn.addEventListener("click", () => {
   let result;
   let newExpresi;
 
-  if (!inputAllowed.includes(input1) || !inputAllowed.includes(input2) || !operatorAllowed.includes(operator)) {
-    alert(`input yang dibolehkan hanya ${inputAllowed[0]} dan ${inputAllowed[1]} \noperator yang dibolehkan hanya ${operatorAllowed}`);
-    result = "ERROR";
-  } else {
+  try {
     for (let i = 0; i < expresi.length; i++) {
       if (expresi[i] == "and") {
         expresi[i] = "&&";
@@ -44,14 +41,11 @@ calculateBtn.addEventListener("click", () => {
         result = eval(newExpresi);
       }
     }
+
+    result = result == "1" || result == true ? "1" : "0";
+  } catch {
+    result = "ERROR";
   }
 
-  if (result == "1" || result == "true") {
-    result = "1";
-  } else if (result == "ERROR") {
-    result = "ERROR";
-  } else {
-    result = "0";
-  }
   document.getElementById("result").value = result;
 });
