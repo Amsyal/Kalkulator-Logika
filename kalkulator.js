@@ -46,7 +46,12 @@ calculateBtn.addEventListener("click", () => {
     }
   }
 
-  result = result == "true" || result == "1" ? "1" : "0";
-
+  if (result == "1" || result == "true") {
+    result = "1";
+  } else if (result == "ERROR") {
+    result = "ERROR";
+  } else {
+    result = "0";
+  }
   document.getElementById("result").value = result;
 });
