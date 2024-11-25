@@ -7,9 +7,6 @@ calculateBtn.addEventListener("click", () => {
 
   expresi = [input1, operator, input2];
 
-  let inputAllowed = ["1", "0"];
-  let operatorAllowed = ["not", "and", "or", "xor", "nand", "nor"];
-
   let result;
   let newExpresi;
 
