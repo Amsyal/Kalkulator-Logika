@@ -38,8 +38,7 @@ calculateBtn.addEventListener("click", () => {
         result = eval(newExpresi);
       }
     }
-
-    result = result == "1" || result == true ? "1" : "0";
+    result = Boolean(result);
   } catch {
     result = "ERROR";
   }
